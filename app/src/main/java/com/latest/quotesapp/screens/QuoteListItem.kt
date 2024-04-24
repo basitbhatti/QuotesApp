@@ -34,7 +34,6 @@ fun QuoteListItem(
     modifier: Modifier = Modifier, quote: Quote,
     onClick : () -> Unit
 ) {
-
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -112,6 +111,6 @@ private fun QuoteItemPreview() {
     QuoteListItem(
         quote = Quote(
             text = "This is a quote and it's written by its author.", author = "Author Authorson"
-        )
+        ), onClick = {}
     )
 }

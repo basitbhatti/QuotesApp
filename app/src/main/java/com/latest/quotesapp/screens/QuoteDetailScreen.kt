@@ -57,6 +57,7 @@ fun QuoteDetailScreen(modifier: Modifier = Modifier, quote: Quote) {
             Column(
                 verticalArrangement = Arrangement.Center, modifier = modifier.padding(25.dp)
             ) {
+
                 Box(
                     modifier = modifier
                         .padding(top = 25.dp)
@@ -89,6 +90,7 @@ fun QuoteDetailScreen(modifier: Modifier = Modifier, quote: Quote) {
                             Color(0xFFEEEEE)
                         )
                 )
+
                 Text(
                     modifier = modifier.padding(bottom = 25.dp),
                     text = quote.author,
