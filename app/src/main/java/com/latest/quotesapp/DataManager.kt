@@ -8,6 +8,7 @@ import com.latest.quotesapp.model.Quote
 object DataManager {
 
     var data = emptyArray<Quote>()
+    lateinit var currentQuote: Quote
     var isDataLoaded = mutableStateOf(false)
 
     fun loadAssetsFromFile(context: Context) {
@@ -21,6 +22,11 @@ object DataManager {
         data = gson.fromJson(json, Array<Quote>::class.java)
         isDataLoaded.value = true
     }
+
+    fun setQuote(quote:Quote){
+        currentQuote = quote
+    }
+
 
 
 }

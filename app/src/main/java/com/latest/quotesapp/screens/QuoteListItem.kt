@@ -22,23 +22,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.latest.quotesapp.DataManager
 import com.latest.quotesapp.R
 import com.latest.quotesapp.model.Quote
-import kotlin.text.Typography.quote
+import com.latest.quotesapp.navigation.Screen
 
 @Composable
 fun QuoteListItem(
-    modifier: Modifier = Modifier, quote: Quote,
-    onClick : () -> Unit
+    navController: NavHostController,
+    modifier: Modifier = Modifier, quote: Quote
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .clickable {
-                onClick()
+                DataManager.setQuote(quote)
+                navController.navigate(Screen.DetailScreen.route)
             }
             .padding(10.dp)
             .background(Color.White),
@@ -90,12 +92,14 @@ fun QuoteListItem(
                             )
                     )
 
-                    Text(
-                        text = quote.author,
-                        fontWeight = FontWeight.Light,
-                        fontFamily = FontFamily.Monospace,
-                        fontSize = 10.sp
-                    )
+                    quote?.author?.let {
+                        Text(
+                            text = it,
+                            fontWeight = FontWeight.Light,
+                            fontFamily = FontFamily.Monospace,
+                            fontSize = 10.sp
+                        )
+                    }
 
                 }
 
@@ -103,14 +107,4 @@ fun QuoteListItem(
         }
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun QuoteItemPreview() {
-    QuoteListItem(
-        quote = Quote(
-            text = "This is a quote and it's written by its author.", author = "Author Authorson"
-        ), onClick = {}
-    )
 }

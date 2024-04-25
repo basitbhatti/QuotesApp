@@ -9,6 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.latest.quotesapp.navigation.NavGraphBuilder
 import com.latest.quotesapp.screens.QuoteListScreen
 import com.latest.quotesapp.ui.theme.QuotesAppTheme
 import kotlinx.coroutines.Dispatchers
@@ -25,21 +28,14 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             QuotesAppTheme {
-                App()
+                val navController = rememberNavController()
+                NavGraphBuilder(navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun App(modifier: Modifier = Modifier) {
-    if (DataManager.isDataLoaded.value) {
-        QuoteListScreen(data = DataManager.data, onClick = {
+fun App(modifier: Modifier = Modifier, navController : NavHostController) {
 
-        })
-    } else {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
-            Text(text = "Loading...")
-        }
-    }
 }

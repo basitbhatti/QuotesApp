@@ -26,11 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.latest.quotesapp.DataManager
 import com.latest.quotesapp.R
-import com.latest.quotesapp.model.Quote
 
 @Composable
-fun QuoteDetailScreen(modifier: Modifier = Modifier, quote: Quote) {
+fun QuoteDetailScreen(modifier: Modifier = Modifier) {
 
     Box(
         modifier = modifier
@@ -74,7 +74,7 @@ fun QuoteDetailScreen(modifier: Modifier = Modifier, quote: Quote) {
                 }
 
                 Text(
-                    text = quote.text,
+                    text = DataManager.currentQuote!!.text,
                     modifier = modifier.padding(top = 10.dp),
                     color = Color.Black,
                     fontWeight = FontWeight.SemiBold,
@@ -93,7 +93,7 @@ fun QuoteDetailScreen(modifier: Modifier = Modifier, quote: Quote) {
 
                 Text(
                     modifier = modifier.padding(bottom = 25.dp),
-                    text = quote.author,
+                    text = DataManager.currentQuote!!.author,
                     fontWeight = FontWeight.Light,
                     fontFamily = FontFamily.Monospace,
                     fontSize = 10.sp
@@ -107,14 +107,4 @@ fun QuoteDetailScreen(modifier: Modifier = Modifier, quote: Quote) {
 
     }
 
-}
-
-@Preview
-@Composable
-private fun DetailPrev() {
-    QuoteDetailScreen(
-        quote = Quote(
-            "This is a quote written by its author", author = "Author Autherson"
-        )
-    )
 }
